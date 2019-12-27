@@ -29,14 +29,9 @@ class ArmTest {
 	//@Qualifier("l")
 	//@Resource(name = "leftArm")
 	//private Arm arm2;
-
-	@Autowired
-	private Header header;
-	
-	@Test
-	void test() {
-		assertNotNull(header);		
-		//assertNotNull(arm2);
-	}
-
+	/*
+	 * @Autowired private Header header;
+	 * 
+	 * @Test void test() { assertNotNull(header); //assertNotNull(arm2); }
+	 */
 }

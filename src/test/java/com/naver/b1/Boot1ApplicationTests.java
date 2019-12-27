@@ -10,14 +10,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class Boot1ApplicationTests {
-	
-	@Autowired
-	private DataSource dataSource;
-
-	@Test
-	void contextLoads() throws Exception {
-		assertNotNull(dataSource.getConnection());
-		
-	}
+	/*
+	 * @Autowired private DataSource dataSource;
+	 */
+	/*
+	 * @Test void contextLoads() throws Exception {
+	 * assertNotNull(dataSource.getConnection());
+	 * 
+	 * }
+	 */
 
 }
