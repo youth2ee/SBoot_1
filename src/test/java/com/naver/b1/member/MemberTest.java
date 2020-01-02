@@ -26,4 +26,20 @@ class MemberTest {
 	 * memberMapper.memberLogin(memberVO); assertEquals("yooza", memberVO.getId());
 	 * }
 	 */
+	
+	@Autowired
+	private MemberMapper memberMapper;
+	
+	@Test
+	public void memberJoinTest() throws Exception {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId("n2");
+		memberVO.setPw("n2");
+		memberVO.setName("n2");
+		memberVO.setEmail("n2@n.com");
+		
+		int result = memberMapper.memberJoin(memberVO);
+		
+		assertEquals(1, result);
+	}
 }
