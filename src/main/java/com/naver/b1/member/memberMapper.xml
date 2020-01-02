@@ -13,5 +13,7 @@
   		select * from members 
   		where id=#{id} and pw=#{pw}
   	</select>
+  	
+  	
   
   </mapper>

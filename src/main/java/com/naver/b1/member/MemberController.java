@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -20,8 +21,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView memberJoin(MemberVO memberVO) throws Exception {
-		int result = memberService.memberJoin(memberVO);
+	public ModelAndView memberJoin(MemberVO memberVO, MultipartFile files) throws Exception {
+		int result = memberService.memberJoin(memberVO, files);
 		String msg = "가입실패";
 		String path = "../";
 		
@@ -35,6 +36,30 @@ public class MemberController {
 		mv.addObject("path", path);
 		
 		return mv;
+	}
+	
+	@GetMapping("memberLogin")
+	public String memberLogin() {
+		return "member/memberLogin";
+	}
+	
+	@PostMapping("memberLogin")
+	public ModelAndView memberLogin(MemberVO memberVO) throws Exception {
+		memberVO = memberService.memberLogin(memberVO);
+		String msg = "로그인 실패";
+		String path = "../";
+		
+		if(memberVO != null) {
+			msg = "로그인 성공";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/result");
+		mv.addObject("msg", msg);
+		mv.addObject("path", path);
+		
+		return mv;
+		
 	}
 	
 }
