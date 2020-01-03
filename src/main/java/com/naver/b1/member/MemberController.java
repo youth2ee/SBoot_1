@@ -1,5 +1,7 @@
 package com.naver.b1.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,13 +46,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberLogin")
-	public ModelAndView memberLogin(MemberVO memberVO) throws Exception {
-		memberVO = memberService.memberLogin(memberVO);
+	public ModelAndView memberLogin(MemberVO memberVO, HttpSession session) throws Exception {
+		memberVO = memberService.memberLogin(memberVO);	
+		
 		String msg = "로그인 실패";
 		String path = "../";
 		
 		if(memberVO != null) {
 			msg = "로그인 성공";
+			MemberFilesVO memberFilesVO = memberService.memberFile(memberVO);
+			session.setAttribute("member", memberVO);
+			session.setAttribute("file", memberFilesVO);
 		}
 		
 		ModelAndView mv = new ModelAndView();
@@ -62,4 +68,34 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("memberPage")
+	public void memberPage() {
+	}
+	
+	@GetMapping("memberLogout")
+	public String memberLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:../";
+	}
+	
+	@GetMapping("memberFileDown")
+	public ModelAndView memberFileDown(MemberFilesVO memberFilesVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		memberFilesVO = memberService.memberFilesSelect(memberFilesVO);
+		
+		if(memberFilesVO != null) {
+			mv.addObject("memberFiles", memberFilesVO);
+			mv.addObject("path", "upload");
+			
+			//중요 : 객체이름을 지정하지 않으면 그 클래스명의 첫글자를 소문자로 만든것이 객체이름이 된다.
+			mv.setViewName("fileDown");
+			
+		} else {
+			mv.addObject("msg", "사진이 없습니다.");
+			mv.addObject("path", "./memberPage");
+			mv.setViewName("common/result");
+		}
+		
+		return mv;
+	}
 }

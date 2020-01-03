@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.naver.b1.util.FilePathGenerator;
@@ -20,15 +21,17 @@ public class MemberService {
 	@Autowired
 	private MemberFilesMapper memberFilesMapper;
 	
-	/*
-	 * @Autowired private ServletContext servelContext;
-	 */
+	@Autowired 
+	private ServletContext servelContext;
+	 
 	@Autowired
 	private FilePathGenerator filePathGenerator;
 	
 	@Autowired
 	private FileSaver fileSaver;
 	
+	
+	@Transactional(rollbackFor = Exception.class)
 	public int memberJoin(MemberVO memberVO, MultipartFile files) throws Exception {
 		/* 1.
 		 * String filePath = servelContext.getRealPath("upload");
@@ -64,6 +67,12 @@ public class MemberService {
 		return memberMapper.memberLogin(memberVO);
 	}
 	
+	public MemberFilesVO memberFile(MemberVO memberVO) throws Exception {
+		return memberFilesMapper.memberFile(memberVO);
+	}
 	
+	public MemberFilesVO memberFilesSelect(MemberFilesVO memberFilesVO) throws Exception {
+		return memberFilesMapper.memberFilesSelect(memberFilesVO);
+	}
 	
 }

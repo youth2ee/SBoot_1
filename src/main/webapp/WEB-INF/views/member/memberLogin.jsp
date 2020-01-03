@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Member Login</title>
 
-<c:import url="../template/boot.jsp"></c:import>
+<c:import url="../template/boot.jsp" />
 
 </head>
 <body>
 
-<c:import url="../template/nav.jsp"></c:import>
+<c:import url="../template/nav.jsp" />
 
 
 <h1>M e m b e r   L o g i n</h1>

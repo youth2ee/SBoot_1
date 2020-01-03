@@ -1,9 +1,7 @@
 package com.naver.b1.util;
 
 import java.io.File;
-
 import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;

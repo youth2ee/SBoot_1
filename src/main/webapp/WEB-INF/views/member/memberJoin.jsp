@@ -7,18 +7,18 @@
 <meta charset="UTF-8">
 <title>Member Join</title>
 
-<c:import url="../template/boot.jsp"></c:import>
+<c:import url="../template/boot.jsp" />
 
 </head>
 <body>
 
-<c:import url="../template/nav.jsp"></c:import>
+<c:import url="../template/nav.jsp" />
 
 
 <h1>M e m b e r   J o i n</h1>
 
 <div class="container">
-  <h2>Vertical (basic) form</h2>
+  <h2>J O I N</h2>
   <form action="./memberJoin" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="id">ID:</label>
@@ -50,12 +50,7 @@
       <input type="file" class="form-control" id="files" name="files">
     </div>
     
-    
-    
-    <div class="checkbox">
-      <label><input type="checkbox" name="remember"> Remember me</label>
-    </div>
-    
+
     <button type="submit" class="btn btn-default">Submit</button>
   
   </form>

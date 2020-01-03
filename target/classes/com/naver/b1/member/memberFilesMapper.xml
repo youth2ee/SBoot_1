@@ -12,6 +12,13 @@
 		insert into memberFiles(id, fname, oname) values (#{id}, #{fname}, #{oname}) -->
 	</insert>
 
+	<select id="memberFile" parameterType="com.naver.b1.member.MemberVO" resultType="com.naver.b1.member.MemberFilesVO">
+		select * from memberFiles where id=#{id}
+	</select>
+  	
+  	<select id="memberFilesSelect" parameterType="com.naver.b1.member.MemberFilesVO" resultType="com.naver.b1.member.MemberFilesVO">
+  		select * from memberFiles where fnum=#{fnum}
+  	</select>
   	
   
   </mapper>
