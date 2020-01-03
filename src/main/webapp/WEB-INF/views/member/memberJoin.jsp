@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,48 +17,53 @@
 <c:import url="../template/nav.jsp" />
 
 
-<h1>M e m b e r   J o i n</h1>
 
 <div class="container">
-  <h2>J O I N</h2>
-  <form action="./memberJoin" method="post" enctype="multipart/form-data">
-    <div class="form-group">
+<h1>M e m b e r   J o i n</h1>
+<hr>
+<h2>J O I N</h2>
+
+	<form:form action="./memberJoin" method="post" enctype="multipart/form-data" modelAttribute="memberVO">
+	<div class="form-group">
+      <!-- path(memberVO의 변수명) = name -->
       <label for="id">ID:</label>
-      <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
+      <form:input path="id" placeholder="Enter id" class="form-control" id="id" />
+     
+      <div style="height: 20px;"> <form:errors path="id" cssStyle="color:red; " /> </div>
     </div>
     
     <div class="form-group">
       <label for="pw">Password:</label>
-      <input type="password" class="form-control" id="pw" placeholder="Enter password" name="pw">
+      <form:password path="pw" class="form-control" id="pw" placeholder="Enter password" />
+      <div style="height: 20px;"> <form:errors path="pw" /> </div>
     </div>
     
     <div class="form-group">
       <label for="pw">Password:</label>
-      <input type="password" class="form-control" id="pw2" placeholder="Enter password" name="pw2">
+       <form:password path="pw2" class="form-control" id="pw2" placeholder="Enter password" />
+       <div style="height: 20px;"> <form:errors path="pw2" /> </div>
     </div>
     
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      <form:input path="name" class="form-control" id="name" placeholder="Enter name" />
     </div>
     
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+       <form:input path="email" class="form-control" id="email" placeholder="Enter email" />
+       <div style="height: 20px;"> <form:errors path="email" /> </div>
     </div>
     
     <div class="form-group">
       <label for="files">File:</label>
       <input type="file" class="form-control" id="files" name="files">
     </div>
-    
-
-    <button type="submit" class="btn btn-default">Submit</button>
-  
-  </form>
+		
+	<button type="submit" class="btn btn-default">Submit</button>
+		
+	</form:form>
 </div>
-
-
 
 
 </body>

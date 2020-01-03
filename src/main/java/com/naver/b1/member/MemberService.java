@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.naver.b1.util.FilePathGenerator;
@@ -74,5 +75,40 @@ public class MemberService {
 	public MemberFilesVO memberFilesSelect(MemberFilesVO memberFilesVO) throws Exception {
 		return memberFilesMapper.memberFilesSelect(memberFilesVO);
 	}
+	
+	//*********************************************************************************************************************************
+	
+	// 회원가입 유효성 검증
+	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult) throws Exception {
+		boolean check = false; //true라면 에러, false면 검증완료로 지정하겠다.
+		
+		//annotiation으로 검증
+		if (bindingResult.hasErrors()) {
+			check = true;
+		}
+		
+		//pw가 일치하는지 검증 
+		if(!memberVO.getPw().equals(memberVO.getPw2())) {
+			check = true;
+			bindingResult.rejectValue("pw2", "memberVO.pw.notEqual");
+			//pw2 : form 내의 path명 
+			//memberVO.pw.notEqual : properties의 key값 
+		}
+		
+		//id 중복검사
+		System.out.println(memberVO.getId());
+		memberVO = memberMapper.idCheck(memberVO);
+		if (memberVO != null) {
+			check = true;
+			bindingResult.rejectValue("id", "memberVO.id.notEqual"); 
+		}
+		
+		
+		return check;
+	}
+	
+	
+	
+	
 	
 }

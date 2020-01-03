@@ -1,8 +1,8 @@
 package com.naver.b1.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.naver.b1.robot.LeftArm;
 import com.naver.b1.robot.RightArm;
