@@ -52,7 +52,7 @@
       <input type="file" class="form-control" id="files" name="files">
     </div>
      -->
-     		<div id="files_d">
+<!--     		<div id="files_d">
 			<div class="form-group" title="parent">
       		<label for="files">File:</label>
      		 <input type="file" class="form-control" id="files" name="files">
@@ -65,6 +65,19 @@
     
 	<button type="submit" class="btn btn-default">Submit</button>
 	
+	 -->
+	
+				 <div class="row" >
+		    	<input type="button"  class="btn btn-info col-sm-3" id="add" value="ADD FILE">
+		    	<div id="files" class="col-sm-12"></div>
+		    </div>
+		    
+		    <div class="row"></div>
+		     <div class="row" style="margin-top: 50px;">
+		    <input type="submit" id="write" class="btn btn-danger col-sm-3" value="Write">
+		   	</div> 
+	
+	
 	</form:form>
 
 
@@ -76,12 +89,12 @@
 
 $("#contents").summernote();
 
-var files = $("#files_d").html();
-var count = 1;
+//var files = $("#files_d").html();
+//var count = 1;
 /* var index = 0; //인덱스번호 사용하기 */
 /* $("#files_d").empty(); */
 
-	$("#add").click(function() {
+/* 	$("#add").click(function() {
 		if (count < 5) {
 			$("#files_d").append(files);
 			count++;
@@ -94,7 +107,26 @@ var count = 1;
 			count--;
 			$(this).parents(".form-group").remove();				
 	});
-	 
+	 */
+
+	 var count=0;
+		
+		$("#add").click(function() {
+			if(count<5){
+				var result ='<div class="input-group col-xs-3"><input type="file" name="files" class="form-control" id="files"><span class="input-group-addon"><i class="glyphicon glyphicon-remove del"></i></span> </div>';
+				$("#files").append(result);
+				count++;
+			}else {
+				alert("첨부파일은 최대 5개만 가능합니다.");
+			}
+		});
+		
+		$("#files").on("click", ".del", function() {
+			$(this).parent().parent().remove();
+			//$(this).remove();
+			count--;
+		});
+	
 
 
 

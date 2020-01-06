@@ -2,10 +2,17 @@ package com.naver.b1.notice;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 public class NoticeVO {
 	
 	private int num;
+	
+	@NotEmpty(message = "제목을 입력하세요")
 	private String title;
+	
+	@NotEmpty(message = "작성자를 입력하세요")
 	private String writer;
 	private String contents;
 	private Date regDate; 

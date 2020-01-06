@@ -36,7 +36,7 @@
 		</c:if>
 	</h1>
 
-	<img alt="안보이네오 은우,,," src="./images/cha2.jpg">
+	<img alt="은우,,," src="./images/cha2.jpg">
 	
 	<h1>${t} 你好</h1>
 </div>

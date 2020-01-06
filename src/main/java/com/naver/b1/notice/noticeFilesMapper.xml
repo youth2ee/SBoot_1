@@ -4,5 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.naver.b1.notice.NoticeFilesMapper">
-  
+  	<insert id="noticeFilesInsert" parameterType="com.naver.b1.notice.NoticeFilesVO">
+  		insert into noticeFiles values (null, #{num}, #{fname}, #{oname})
+  	</insert>
+  	
+	<insert id="noticeFilesListInsert" parameterType="java.util.List">
+		insert into noticeFiles values 
+		<foreach collection="list" item="item" separator=",">
+		(null, #{item.num}, #{item.fname}, #{item.oname})
+		</foreach>
+		
+	</insert>
+
+
+
   </mapper>

@@ -57,7 +57,7 @@ public class FilePathGenerator {
 		//classpath 경로를 받아오기 위해 사용
 		//resourceLoader와 달리 시작경로의 classpath 구문은 생략
 		//나머지는 resourceLoader와 같다.
-		String path = "/static/";
+		String path = "static/";
 		ClassPathResource classPathResource = new ClassPathResource(path);
 		//static에서 classpath를 가져오겠다 
 		
