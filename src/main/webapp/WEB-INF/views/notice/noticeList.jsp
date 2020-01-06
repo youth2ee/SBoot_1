@@ -19,7 +19,7 @@ notice list
 
 		<div>
 			<form action="./noticeList" id="frm">
-				<!-- <input type="hidden" value="1" name="curPage" id="curPage"> -->
+				 <input type="hidden" value="1" name="curPage" id="curPage">
 			
 				<select name="kind">				
 					<option id="kT" value="kT">제목</option>
