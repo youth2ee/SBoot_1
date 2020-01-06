@@ -22,9 +22,11 @@
   		order by num desc limit #{startRow}, 10
   	</select>
   	
+  	
   	<insert id="noticeInsert" parameterType="com.naver.b1.notice.NoticeVO" useGeneratedKeys="true" keyProperty="num">
   		insert into notice values (#{num}, #{title}, #{writer}, #{contents}, now(), 0)
   	</insert>
+  	
 
 	<select id="noticeCount" resultType="java.lang.Integer">
 		select count(num) from notice
@@ -46,6 +48,8 @@
 		select * from notice 
 		where num = #{num}
 	</select>
+
+
 
   	
   	

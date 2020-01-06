@@ -41,11 +41,17 @@ public class NoticeService {
 	public List<NoticeVO> noticeList(Pager pager) throws Exception {
 		pager.makeRow();
 		pager.makePager(noticeMapper.noticeCount());
+		pager.setStartRow(pager.getStartRow()-1);
+		
 		return noticeMapper.noticeList(pager);
 	}
 	
 	public NoticeVO noticeSelect(NoticeVO noticeVO) throws Exception {
 		return noticeMapper.noticeSelect(noticeVO);
+	}
+	
+	public List<NoticeFilesVO> noticeFilesSelect(NoticeVO noticeVO) throws Exception {
+		return noticeFilesMapper.noticeFilesSelect(noticeVO);
 	}
 	
 	
@@ -83,15 +89,23 @@ public class NoticeService {
 	  List<NoticeFilesVO> noticeFilesVOs = new ArrayList<>();
 	  
 	  
-	  for(MultipartFile filed : files) { 
-	  NoticeFilesVO noticeFilesVO = new
-	  NoticeFilesVO(); filename = fileSaver.save(file,filed);
-	  noticeFilesVO.setNum(noticeVO.getNum()); 
-	  noticeFilesVO.setFname(filename);
-	  noticeFilesVO.setOname(filed.getOriginalFilename());
+			/*
+			 * for(MultipartFile filed : files) { NoticeFilesVO noticeFilesVO = new
+			 * NoticeFilesVO(); filename = fileSaver.save(file,filed);
+			 * noticeFilesVO.setNum(noticeVO.getNum()); noticeFilesVO.setFname(filename);
+			 * noticeFilesVO.setOname(filed.getOriginalFilename());
+			 * 
+			 * noticeFilesVOs.add(noticeFilesVO); }
+			 */
 	  
-	  noticeFilesVOs.add(noticeFilesVO);
-	  
+	  for(int i=1;i<files.length;i++) { 
+		  NoticeFilesVO noticeFilesVO = new
+		  NoticeFilesVO(); filename = fileSaver.save(file,files[i]);
+		  noticeFilesVO.setNum(noticeVO.getNum()); 
+		  noticeFilesVO.setFname(filename);
+		  noticeFilesVO.setOname(files[i].getOriginalFilename());
+		  
+		  noticeFilesVOs.add(noticeFilesVO);
 	  }
 	  
 	  fresult = noticeFilesMapper.noticeFilesListInsert(noticeFilesVOs);
@@ -115,6 +129,10 @@ public class NoticeService {
 		
 		return check;
 		
+	}
+	
+	public NoticeFilesVO noticeFilesDown(NoticeFilesVO noticeFilesVO) throws Exception {
+		return noticeFilesMapper.noticeFilesDown(noticeFilesVO);
 	}
 	
 	

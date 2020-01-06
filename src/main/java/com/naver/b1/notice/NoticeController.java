@@ -80,9 +80,32 @@ public class NoticeController {
 	public ModelAndView noticeSelect(NoticeVO noticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("noticeVO", noticeService.noticeSelect(noticeVO));
+		mv.addObject("files", noticeService.noticeFilesSelect(noticeVO));
 		mv.setViewName("notice/noticeSelect");
 		
 		return mv;
+	}
+	
+	@GetMapping("noticeFileDown")
+	public ModelAndView noticeFileDown(NoticeFilesVO noticeFilesVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		noticeFilesVO = noticeService.noticeFilesDown(noticeFilesVO);
+		
+		if(noticeFilesVO != null) {
+			mv.addObject("noticeFiles", noticeFilesVO);
+			mv.addObject("path", "upload");
+			
+			//중요 : 객체이름을 지정하지 않으면 그 클래스명의 첫글자를 소문자로 만든것이 객체이름이 된다.
+			mv.setViewName("noticeFileDown");
+		} else {
+			mv.addObject("msg", "사진이 없습니다.");
+			mv.addObject("path", "./noticeList");
+			mv.setViewName("common/result");
+		}
+		
+		return mv;
+		
 	}
 
 

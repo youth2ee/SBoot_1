@@ -13,8 +13,15 @@
 		<foreach collection="list" item="item" separator=",">
 		(null, #{item.num}, #{item.fname}, #{item.oname})
 		</foreach>
-		
 	</insert>
+	
+	<select id="noticeFilesSelect" parameterType="com.naver.b1.notice.NoticeVO" resultType="com.naver.b1.notice.NoticeFilesVO">
+		select * from noticeFiles where num = #{num}
+	</select>
+	
+	<select id="noticeFilesDown" parameterType="com.naver.b1.notice.NoticeFilesVO" resultType="com.naver.b1.notice.NoticeFilesVO">
+		select * from noticeFiles where fnum = #{fnum}
+	</select>
 
 
 

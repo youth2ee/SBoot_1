@@ -20,5 +20,6 @@
   		select * from memberFiles where fnum=#{fnum}
   	</select>
   	
+  	
   
   </mapper>

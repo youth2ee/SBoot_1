@@ -19,7 +19,7 @@ notice list
 
 		<div>
 			<form action="./noticeList" id="frm">
-				<input type="hidden" value="1" name="curPage" id="curPage">
+				<!-- <input type="hidden" value="1" name="curPage" id="curPage"> -->
 			
 				<select name="kind">				
 					<option id="kT" value="kT">제목</option>
@@ -60,15 +60,18 @@ notice list
 				<ul class="pagination" style="margin: 0 auto; text-align: center;">
 					
 					<c:if test="${pager.curBlock gt 1}">
-						<li><span id=${pager.startNum - 1} class="list">이전</span></li>
+						<li><span id=${pager.startNum - 1} class="list">이전<a href="./noticeList?curPage=${pager.startNum-1}">[이전]</a></span></li>
+						<a href="./noticeList?curPage=${pager.startNum-1}">[이전]</a>
 					</c:if>
 					
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
 						<li><span id="${i}" class="list">${i}</span></li>
+						
 					</c:forEach>
 
 					<c:if test="${pager.curBlock lt pager.totalBlock}">
 						<li><span id="${pager.lastNum + 1}" class="list">다음</span></li>
+						<a href="./noticeList?curPage=${pager.lastNum+1}">[다음]</a>
 					</c:if>
 					
 				</ul>
@@ -86,13 +89,13 @@ notice list
 </div>
 
 	<script type="text/javascript">
-	/* 	var kind = '${pager.kind}';
+	 	var kind = '${pager.kind}';
 		if (kind == '') {
 			kind = "kT";
 		}
 		
 		$("#"+kind).prop("selected", true);
-	 */
+	 
 		$(".list").click(function() {
 			$("#curPage").val($(this).attr("id"));
 			$("#frm").submit();

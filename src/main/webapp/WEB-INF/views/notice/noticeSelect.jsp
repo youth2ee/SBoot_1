@@ -34,6 +34,13 @@
     <div class="form-group">
       <label for="contents">contents:</label>${noticeVO.contents}
     </div>
+    
+    <div>
+    <c:forEach items="${files}" var="file"> 
+		<img alt="" src="../upload/${file.fname}" style="width: 300px;">
+<a class="btn btn-primary" href="./noticeFileDown?fnum=${file.fnum}">File Down</a>
+    </c:forEach>
+    </div>
 
 
 </div>
