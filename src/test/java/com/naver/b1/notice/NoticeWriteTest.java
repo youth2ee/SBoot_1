@@ -1,4 +1,4 @@
-package com.b1.notice;
+package com.naver.b1.notice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +11,6 @@ import com.naver.b1.notice.NoticeMapper;
 import com.naver.b1.notice.NoticeVO;
 
 @SpringBootTest
-@ContextConfiguration
 class NoticeWriteTest {
 
 	@Autowired
