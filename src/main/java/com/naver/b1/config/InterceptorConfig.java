@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.naver.b1.interceptor.CustomInterceptor;
 import com.naver.b1.interceptor.MemberInterceptor;
 import com.naver.b1.interceptor.NoticeInterceptor;
+import com.naver.b1.interceptor.NoticeSelectInterceptor;
 
 @Configuration //이것은 xml파일입니다.
 public class InterceptorConfig implements WebMvcConfigurer {
@@ -20,6 +21,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	private NoticeInterceptor noticeInterceptor;
+	
+	@Autowired
+	private NoticeSelectInterceptor noticeSelectInterceptor;
 
 	//addInterceptors :  interceptor를 등록하는 메서드
 	@Override
@@ -42,6 +46,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 			
 			registry.addInterceptor(noticeInterceptor)
 			.addPathPatterns("/notice/noticeWrite");
+			
+			registry.addInterceptor(noticeSelectInterceptor)
+			.addPathPatterns("/notice/noticeSelect");
 			
 			//WebMvcConfigurer.super.addInterceptors(registry);
 		}

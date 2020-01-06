@@ -39,12 +39,13 @@ public class NoticeService {
 	
 	
 	public List<NoticeVO> noticeList(Pager pager) throws Exception {
-		
 		pager.makeRow();
 		pager.makePager(noticeMapper.noticeCount());
-		
-		
 		return noticeMapper.noticeList(pager);
+	}
+	
+	public NoticeVO noticeSelect(NoticeVO noticeVO) throws Exception {
+		return noticeMapper.noticeSelect(noticeVO);
 	}
 	
 	

@@ -77,10 +77,12 @@ public class NoticeController {
 	
 	
 	@GetMapping("noticeSelect")
-	public void noticeSelect(NoticeVO noticeVO) {
-	
+	public ModelAndView noticeSelect(NoticeVO noticeVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("noticeVO", noticeService.noticeSelect(noticeVO));
+		mv.setViewName("notice/noticeSelect");
 		
-	
+		return mv;
 	}
 
 

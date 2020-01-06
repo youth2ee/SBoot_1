@@ -10,7 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.naver.b1.member.MemberVO;
 
 @Component
-public class NoticeInterceptor extends HandlerInterceptorAdapter{
+public class NoticeSelectInterceptor extends HandlerInterceptorAdapter{
 
 	
 	//controller 진입 전 사용
@@ -19,12 +19,7 @@ public class NoticeInterceptor extends HandlerInterceptorAdapter{
 		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
 		
 		if(memberVO != null) {
-			if (memberVO.getId().equals("admin")) {
-				return true;				
-			} else {
-				response.sendRedirect("../notice/noticeList");
-				return false;
-			}
+			return true;
 		}else {
 			//현재위치는 memberPage이므로 
 			response.sendRedirect("../notice/noticeList");

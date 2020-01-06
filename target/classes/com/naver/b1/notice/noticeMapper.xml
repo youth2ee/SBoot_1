@@ -42,7 +42,10 @@
 	</select>
 	
 	
-	
+	<select id="noticeSelect" parameterType="com.naver.b1.notice.NoticeVO" resultType="com.naver.b1.notice.NoticeVO">
+		select * from notice 
+		where num = #{num}
+	</select>
 
   	
   	
