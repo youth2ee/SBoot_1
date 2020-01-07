@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.naver.b1.notice.NoticeVO;
+
 @SpringBootTest
 @Transactional
 @Rollback
@@ -47,13 +49,24 @@ class MemberTest {
 	@Test
 	public void memberJoinTest() throws Exception {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setId("n21");
-		memberVO.setPw("n21");
-		memberVO.setName("n21");
-		memberVO.setEmail("n2@n.com");
+		memberVO.setId("admin");
+		memberVO.setPw("admin");
+		memberVO.setName("admin");
+		memberVO.setEmail("admin@admin.com");
 		
 		int result = memberMapper.memberJoin(memberVO);
 		
 		assertEquals(1, result);
 	}
+	
+	/*
+	 * @Test public void memberWrite() throws Exception { for(int i=0;i<30;i++) {
+	 * MemberVO memberVO = new MemberVO(); memberVO.setId("id"+i);
+	 * memberVO.setPw("aaa"); memberVO.setName("name"+i);
+	 * memberVO.setEmail("email"+i+"@com");
+	 * 
+	 * memberMapper.memberJoin(memberVO); }
+	 * 
+	 * }
+	 */
 }
