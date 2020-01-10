@@ -14,7 +14,14 @@
           <li><a href="${pageContext.request.contextPath}/notice/noticeWrite">Write</a></li>
         </ul>
       </li>
-      <li><a href="#">Page 2</a></li>
+      
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Air<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="${pageContext.request.contextPath}/airline/airSelect">Select</a></li>
+          <li><a href="${pageContext.request.contextPath}/notice/noticeWrite">Write</a></li>
+        </ul>
+      </li>
+      
     </ul>
     <ul class="nav navbar-nav navbar-right">
     
